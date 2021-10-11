@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+  <bean id="provider" class="com.example.helloworld.provider.ConfigurableMessageProvider">
+    <constructor-arg value="I hope that someone gets my message in a bottle."/>
+  </bean>
+  <!-- 
+    or use this with 
+      xmlns:c="http://www.springframework.org/schema/c"
+   -->
+  <!-- <bean id="provider" 
+    class="com.example.helloworld.provider.ConfigurableMessageProvider"
+    c:message="I hope that someone gets my message in a bottle."/> -->
+  <bean id="renderer" class="com.example.helloworld.renderer.StandardOutMessageRenderer">
+    <property name="messageProvider" ref="provider"/>
+  </bean>
+</beans>
