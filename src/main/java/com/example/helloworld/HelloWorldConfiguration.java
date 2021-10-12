@@ -15,6 +15,7 @@ import org.springframework.context.annotation.*;
 // @ImportResource(locations = "app-context-collection-injection-annotation.xml")
 // @ImportResource(locations = "app-context-lookup-method-injection.xml")
 @ImportResource(locations = "app-context-method-replacement.xml")
+// @ImportResource(locations = "app-context-context-aware.xml")
 @ComponentScan(basePackages = "com.example.helloworld")
 @Configuration
 public class HelloWorldConfiguration {

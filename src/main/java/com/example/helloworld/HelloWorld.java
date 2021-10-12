@@ -1,6 +1,7 @@
 package com.example.helloworld;
 
 import com.example.helloworld.beaninstantiationmode.Worker;
+import com.example.helloworld.contextaware.Musician;
 // import com.example.helloworld.collectioninjection.CollectionInjection;
 import com.example.helloworld.lookupmethodinjection.*;
 import com.example.helloworld.methodreplacement.ReplacementTarget;
@@ -73,6 +74,9 @@ public class HelloWorld {
         Worker worker1 = context.getBean("nonSingleton", Worker.class);
         Worker worker2 = context.getBean("nonSingleton", Worker.class);
         compareWorkers(worker1, worker2);
+
+        Musician musician = context.getBean("johnMayer", Musician.class);
+        musician.playInstrument();
     }
 
     public static void displayLookupInfo(String beanName, DemoBean bean) {
