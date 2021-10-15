@@ -1,0 +1,14 @@
+package com.example.helloworld.simplevalueinjection;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class SimpleValueInjectionDemo {
+    public static void main(String[] args) {
+        ApplicationContext context = 
+            new AnnotationConfigApplicationContext(SimpleValueInjectionConfig.class);
+    
+        SimpleValueInjection svInjection = context.getBean("valueInjection", SimpleValueInjection.class);
+        System.out.println(svInjection);
+    }
+}

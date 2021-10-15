@@ -1,4 +1,4 @@
-package com.example.helloworld.provider;
+package com.example.helloworld.basicdependencyinjection;
 
 import org.springframework.stereotype.Component;
 

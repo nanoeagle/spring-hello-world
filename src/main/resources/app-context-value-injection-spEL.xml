@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="valueInjectionConfig"
-    class="com.example.helloworld.springexpressionlanguage.SimpleValueInjectionConfig"/>
+    class="com.example.helloworld.springexpressionlanguage.SimpleValueInjectionSpELConfig"/>
   
   <bean id="valueInjectionSpEL" 
     class="com.example.helloworld.springexpressionlanguage.SimpleValueInjectionSpEL"

@@ -1,6 +1,4 @@
-package com.example.helloworld.renderer;
-
-import com.example.helloworld.provider.MessageProvider;
+package com.example.helloworld.basicdependencyinjection;
 
 public interface MessageRenderer {
     void render();

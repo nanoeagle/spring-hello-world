@@ -3,7 +3,7 @@ package com.example.helloworld.springexpressionlanguage;
 import org.springframework.stereotype.Component;
 
 @Component("valueInjectionConfig")
-public class SimpleValueInjectionConfig {
+public class SimpleValueInjectionSpELConfig {
     private String name = "John Mayer";
     private int age = 39;
     private float height = 1.92f;

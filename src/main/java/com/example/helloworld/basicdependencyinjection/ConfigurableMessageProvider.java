@@ -1,4 +1,4 @@
-package com.example.helloworld.provider;
+package com.example.helloworld.basicdependencyinjection;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
