@@ -1,8 +1,8 @@
 package com.example.helloworld.beaninheritance;
 
-import org.springframework.context.annotation.*;
+// import org.springframework.context.annotation.*;
 
-@ImportResource(locations = "app-context-bean-inheritance.xml")
+// @ImportResource(locations = "app-context-bean-inheritance.xml")
 // @ComponentScan(basePackages = "com.example.helloworld")
-@Configuration
+// @Configuration
 public class BeanInheritanceConfig {}
