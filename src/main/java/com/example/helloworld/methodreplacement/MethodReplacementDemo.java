@@ -1,12 +1,11 @@
 package com.example.helloworld.methodreplacement;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.util.StopWatch;
 
 public class MethodReplacementDemo {
     public static void main(String[] args) {
-        ApplicationContext context = 
+        AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(MethodReplacementConfig.class);
     
         ReplacementTarget replacementTarget = 
@@ -15,7 +14,9 @@ public class MethodReplacementDemo {
 
         ReplacementTarget standardReplacementTarget = 
             context.getBean("standardReplacementTarget", ReplacementTarget.class);
-        displayInfo(standardReplacementTarget);  
+        displayInfo(standardReplacementTarget);
+
+        context.close();
     }
 
     private static void displayInfo(ReplacementTarget target) {

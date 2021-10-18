@@ -1,16 +1,16 @@
 package com.example.helloworld.beaninstantiationmode;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class BeanInstantiationModeDemo {
     public static void main(String[] args) {
-        ApplicationContext context = 
+        AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(BeanInstantiationModeConfig.class);
     
         Worker worker1 = context.getBean("nonSingleton", Worker.class);
         Worker worker2 = context.getBean("nonSingleton", Worker.class);
         compareWorkers(worker1, worker2);
+        context.close();
     }
 
     private static void compareWorkers(Worker worker1, Worker worker2) {

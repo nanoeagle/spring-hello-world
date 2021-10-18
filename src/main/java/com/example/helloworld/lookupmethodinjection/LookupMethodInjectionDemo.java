@@ -1,12 +1,11 @@
 package com.example.helloworld.lookupmethodinjection;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.util.StopWatch;
 
 public class LookupMethodInjectionDemo {
     public static void main(String[] args) {
-        ApplicationContext context = 
+        AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(LookupMethodInjectionConfig.class);
         
         StandardLookup standardLookup = 
@@ -20,6 +19,8 @@ public class LookupMethodInjectionDemo {
         StandardLookup standardLookup2 = 
             context.getBean("standardLookup", StandardLookup.class);
         System.out.println(standardLookup.getMyVocalist() == standardLookup2.getMyVocalist());
+
+        context.close();
     }
 
     private static void displayLookupInfo(String beanName, DemoBean bean) {

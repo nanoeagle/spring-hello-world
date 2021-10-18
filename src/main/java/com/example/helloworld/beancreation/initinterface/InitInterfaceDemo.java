@@ -1,11 +1,10 @@
 package com.example.helloworld.beancreation.initinterface;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class InitInterfaceDemo {
     public static void main(String[] args) {
-        ApplicationContext context = 
+        AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(InitInterfaceConfig.class);
         
         Dancer dancer1 = context.getBean("dancer1", Dancer.class);
@@ -16,5 +15,6 @@ public class InitInterfaceDemo {
         
         Dancer dancer3 = context.getBean("dancer3", Dancer.class);
         System.out.println(dancer3);
+		context.close();
     }
 }

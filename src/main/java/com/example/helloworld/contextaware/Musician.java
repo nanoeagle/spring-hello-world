@@ -19,5 +19,5 @@ public class Musician implements ApplicationContextAware {
     public void playInstrument() {
         guitar = context.getBean("gopher", Guitar.class);
         guitar.play();
-    }  
+    }
 }

@@ -1,11 +1,10 @@
 package com.example.helloworld.beancreation.initmethod;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class InitMethodDemo {
     public static void main(String[] args) {
-        ApplicationContext context = 
+        AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(InitMethodConfig.class);
         
         Doctor doctor1 = context.getBean("doctor1", Doctor.class);
@@ -16,5 +15,7 @@ public class InitMethodDemo {
         
         Doctor doctor3 = context.getBean("doctor3", Doctor.class);
         System.out.println(doctor3);
+
+		context.close();
     }
 }
