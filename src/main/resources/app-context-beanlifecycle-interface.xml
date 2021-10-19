@@ -4,16 +4,15 @@
   xmlns:p="http://www.springframework.org/schema/p"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd"
-  default-lazy-init="true"
-  default-init-method="init">
+  default-lazy-init="true">
     
-  <bean id="doctor1"
-    class="com.example.helloworld.beancreation.initmethod.Doctor"
+  <bean id="dancer1"
+    class="com.example.helloworld.beanlifecycle.beanlifecycleinterface.Dancer"
     p:name="John Mayer" p:age="39"/>
-  <bean id="doctor2"
-    class="com.example.helloworld.beancreation.initmethod.Doctor"
+  <bean id="dancer2"
+    class="com.example.helloworld.beanlifecycle.beanlifecycleinterface.Dancer"
     p:age="72"/>
-  <bean id="doctor3"
-    class="com.example.helloworld.beancreation.initmethod.Doctor"
+  <bean id="dancer3"
+    class="com.example.helloworld.beanlifecycle.beanlifecycleinterface.Dancer"
     p:name="John Butler"/>
 </beans>

@@ -1,12 +1,12 @@
-package com.example.helloworld.beancreation.initmethod;
+package com.example.helloworld.beanlifecycle.beanlifecyclemethod;
 
-// import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.*;
 
-// @ImportResource(locations = "app-context-init-method.xml")
+// @ImportResource(locations = "app-context-beanlifecycle-method.xml")
 // @ComponentScan(basePackages = "com.example.helloworld")
-// @Configuration
-public class InitMethodConfig {
-    /* @Bean(initMethod = "init")
+@Configuration
+public class BlcMethodConfig {
+    @Bean(initMethod = "init", destroyMethod = "destroy")
     @Lazy
     public Doctor doctor1() {
         Doctor doctor1 = new Doctor();
@@ -15,7 +15,7 @@ public class InitMethodConfig {
         return doctor1;
     }
 
-    @Bean(initMethod = "init")
+    @Bean(initMethod = "init", destroyMethod = "destroy")
     @Lazy
     public Doctor doctor2() {
         Doctor doctor2 = new Doctor();
@@ -23,11 +23,11 @@ public class InitMethodConfig {
         return doctor2;
     }
 
-    @Bean(initMethod = "init")
+    @Bean(initMethod = "init", destroyMethod = "destroy")
     @Lazy
     public Doctor doctor3() {
         Doctor doctor3 = new Doctor();
         doctor3.setName("John Butler");
         return doctor3;
-    } */
+    }
 }

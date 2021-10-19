@@ -1,11 +1,11 @@
-package com.example.helloworld.beancreation.initinterface;
+package com.example.helloworld.beanlifecycle.beanlifecycleinterface;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class InitInterfaceDemo {
+public class BlcInterfaceDemo {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = 
-            new AnnotationConfigApplicationContext(InitInterfaceConfig.class);
+            new AnnotationConfigApplicationContext(BlcInterfaceConfig.class);
         
         Dancer dancer1 = context.getBean("dancer1", Dancer.class);
         System.out.println(dancer1);
@@ -13,8 +13,12 @@ public class InitInterfaceDemo {
         Dancer dancer2 = context.getBean("dancer2", Dancer.class);
         System.out.println(dancer2);
         
-        Dancer dancer3 = context.getBean("dancer3", Dancer.class);
-        System.out.println(dancer3);
+        try {
+            Dancer dancer3 = context.getBean("dancer3", Dancer.class);
+            System.out.println(dancer3);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());;
+        }
 		context.close();
     }
 }

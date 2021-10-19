@@ -1,5 +1,7 @@
 package com.example.helloworld.autowiring;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -21,8 +23,9 @@ public class Target {
         System.out.println("Target(Foo, Bar) called");
     }
 
-    @Autowired
-    @Qualifier("fooImplOne")
+    @Resource(name = "fooImplOne")
+    // @Autowired
+    // @Qualifier("fooImplOne")
     public void setFooOne(Foo fooOne) {
         this.fooOne = fooOne;
         System.out.println("Property fooOne set");

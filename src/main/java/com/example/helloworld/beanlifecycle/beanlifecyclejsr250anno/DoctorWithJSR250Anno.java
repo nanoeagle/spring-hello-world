@@ -1,12 +1,15 @@
-package com.example.helloworld.beancreation.initmethod;
+package com.example.helloworld.beanlifecycle.beanlifecyclejsr250anno;
 
-public class Doctor {
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+public class DoctorWithJSR250Anno {
     private static final String DEFAULT_NAME = "Eric Clapton";
     
     private String name;
     private int age;
 
-    public Doctor() {
+    public DoctorWithJSR250Anno() {
         System.out.println("A new Doctor object has been created.");
     }
 
@@ -18,6 +21,7 @@ public class Doctor {
         this.age = age;
     }
 
+    @PostConstruct
     public void init() {
         System.out.println("Initializing bean");
         
@@ -28,8 +32,13 @@ public class Doctor {
         if (age == 0) {
             throw new IllegalArgumentException(
                 "You must set the age property of any beans of type " 
-                + Doctor.class);
+                + DoctorWithJSR250Anno.class);
         }
+    }
+
+    @PreDestroy
+    public void destroy() throws Exception {
+        System.out.println("Destroying bean " + name + ".");
     }
 
     @Override

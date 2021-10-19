@@ -1,15 +1,13 @@
-package com.example.helloworld.beancreation.initinterface;
+package com.example.helloworld.beanlifecycle.beanlifecyclemethod;
 
-import org.springframework.beans.factory.InitializingBean;
-
-public class Dancer implements InitializingBean {
+public class Doctor {
     private static final String DEFAULT_NAME = "Eric Clapton";
     
     private String name;
     private int age;
 
-    public Dancer() {
-        System.out.println("A new Dancer object has been created.");
+    public Doctor() {
+        System.out.println("A new Doctor object has been created.");
     }
 
     public void setName(String name) {
@@ -19,9 +17,8 @@ public class Dancer implements InitializingBean {
     public void setAge(int age) {
         this.age = age;
     }
-    
-    @Override
-    public void afterPropertiesSet() throws Exception {
+
+    public void init() {
         System.out.println("Initializing bean");
         
         if (name == null) {
@@ -31,8 +28,12 @@ public class Dancer implements InitializingBean {
         if (age == 0) {
             throw new IllegalArgumentException(
                 "You must set the age property of any beans of type " 
-                + Dancer.class);
+                + Doctor.class);
         }
+    }
+
+    public void destroy() {
+        System.out.println("Destroying bean " + name + ".");
     }
 
     @Override
