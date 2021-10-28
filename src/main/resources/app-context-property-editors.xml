@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+  <util:list id="registrarList">
+    <bean class="com.example.helloworld.editorsforproperties.CustomPropertyEditorRegistrar"/>
+  </util:list>
+  <util:map id="customEditorMap">
+    <entry key="com.example.helloworld.editorsforproperties.FullName" 
+      value="com.example.helloworld.editorsforproperties.FullNamePropertyEditor"/>
+  </util:map>
+  <bean id="customEditorConfigurer"
+    class="org.springframework.beans.factory.config.CustomEditorConfigurer"
+    p:propertyEditorRegistrars-ref="registrarList"
+    p:customEditors-ref="customEditorMap"/>
+
+  <util:list id="stringList">
+    <value>String value 1</value>
+    <value>String value 2</value>
+  </util:list>
+  <util:properties id="propertyConfig">
+    <prop key="name">Chris</prop>
+    <prop key="age">32</prop>
+  </util:properties>
+  <bean id="propertyEditorBean"
+    class="com.example.helloworld.editorsforproperties.PropertyEditorBean"
+    p:bytes="John Mayer"
+    p:character="A"
+    p:genericClass="java.lang.String"
+    p:trueOrFalse="true"
+    p:stringList-ref="stringList"
+    p:date="05/03/13"
+    p:floatValue="123.45678"
+    p:file="propertyEditorTest.txt"
+    p:iStream="propertyEditorTest.txt"
+    p:locale="zh_hk"
+    p:pattern="a*b"
+    p:properties-ref="propertyConfig"
+    p:trimString=" String need trimming "
+    p:url="https://spring.io/"/>
+  
+  <bean id="customPropertyEditorBean" 
+    class="com.example.helloworld.editorsforproperties.CustomPropertyEditorBean"
+    p:fullName="Jinki Lee"/>
+</beans>
