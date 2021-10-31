@@ -2,7 +2,7 @@ package com.example.helloworld.beanlifecycle.beanlifecyclemethod;
 
 // import org.springframework.context.annotation.*;
 
-// @ImportResource(locations = "app-context-beanlifecycle-method.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-beanlifecycle-method.xml")
 // @ComponentScan(basePackages = "com.example.helloworld")
 // @Configuration
 public class BlcMethodConfig {

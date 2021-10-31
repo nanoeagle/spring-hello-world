@@ -6,10 +6,10 @@ public class NestingAppContextDemo {
     public static void main(String[] args) {
 
         GenericXmlApplicationContext parentContext = new GenericXmlApplicationContext();
-        parentContext.load("parent-context.xml");
+        parentContext.load("appContextConfigs/parent-context.xml");
         parentContext.refresh();
         GenericXmlApplicationContext childContext = new GenericXmlApplicationContext();
-        childContext.load("child-context.xml");
+        childContext.load("appContextConfigs/child-context.xml");
         childContext.setParent(parentContext);
         childContext.refresh();
 

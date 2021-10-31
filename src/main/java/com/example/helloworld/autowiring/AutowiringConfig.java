@@ -2,7 +2,7 @@ package com.example.helloworld.autowiring;
 
 import org.springframework.context.annotation.*;
 
-// @ImportResource(locations = "app-context-autowiring.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-autowiring.xml")
 // @ComponentScan(basePackages = "com.example.helloworld")
 // @Configuration
 public class AutowiringConfig {

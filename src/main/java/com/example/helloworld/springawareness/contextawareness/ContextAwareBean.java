@@ -1,6 +1,5 @@
 package com.example.helloworld.springawareness.contextawareness;
 
-import org.springframework.beans.*;
 import org.springframework.beans.factory.*;
 import org.springframework.context.*;
 import org.springframework.context.annotation.*;
@@ -13,7 +12,7 @@ public class ContextAwareBean implements DisposableBean, ApplicationContextAware
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
+    public void setApplicationContext(ApplicationContext ctx) {
         if (ctx instanceof AnnotationConfigApplicationContext) {
             ((AnnotationConfigApplicationContext) ctx).registerShutdownHook();
         }

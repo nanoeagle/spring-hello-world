@@ -2,8 +2,8 @@ package com.example.helloworld.beanfactory;
 
 // import org.springframework.context.annotation.*;
 
-// @ImportResource(locations = "app-context-bean-factory.xml")
-// @ImportResource(locations = "app-context-bean-factory-3rd-party.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-bean-factory.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-bean-factory-3rd-party.xml")
 // @Configuration
 public class BeanFactoryConfig {
     // @Bean

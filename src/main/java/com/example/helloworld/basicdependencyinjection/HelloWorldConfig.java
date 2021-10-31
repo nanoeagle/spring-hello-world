@@ -3,9 +3,9 @@ package com.example.helloworld.basicdependencyinjection;
 // import org.springframework.context.annotation.*;
 
 // Mixed way of xml file and configuration class.
-// @ImportResource(locations = "app-context-setter.xml")
-// @ImportResource(locations = "app-context-annotation.xml")
-// @ImportResource(locations = "app-context-constructor.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-setter.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-annotation.xml")
+// @ImportResource(locations = "appContextConfigs/app-context-constructor.xml")
 // @ComponentScan(basePackages = "com.example.helloworld")
 // @Configuration
 public class HelloWorldConfig {

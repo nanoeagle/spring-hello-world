@@ -1,6 +1,5 @@
 package com.example.helloworld.contextaware;
 
-import org.springframework.beans.BeansException;
 import org.springframework.context.*;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -12,7 +11,7 @@ public class Musician implements ApplicationContextAware {
     private ApplicationContext context;
     
     @Override
-    public void setApplicationContext(ApplicationContext context) throws BeansException {
+    public void setApplicationContext(ApplicationContext context) {
         this.context = context;
     }
 
