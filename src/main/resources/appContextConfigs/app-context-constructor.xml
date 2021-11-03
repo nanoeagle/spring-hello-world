@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
  
-  <bean id="provider" class="com.example.helloworld.provider.ConfigurableMessageProvider">
+  <bean id="provider" class="com.example.helloworld.basicdependencyinjection.ConfigurableMessageProvider">
     <constructor-arg value="I hope that someone gets my message in a bottle."/>
   </bean>
   <!-- 
@@ -12,9 +12,9 @@
       xmlns:c="http://www.springframework.org/schema/c"
    -->
   <!-- <bean id="provider" 
-    class="com.example.helloworld.provider.ConfigurableMessageProvider"
+    class="com.example.helloworld.basicdependencyinjection.ConfigurableMessageProvider"
     c:message="I hope that someone gets my message in a bottle."/> -->
-  <bean id="renderer" class="com.example.helloworld.renderer.StandardOutMessageRenderer">
+  <bean id="renderer" class="com.example.helloworld.basicdependencyinjection.StandardOutMessageRenderer">
     <property name="messageProvider" ref="provider"/>
   </bean>
 </beans>

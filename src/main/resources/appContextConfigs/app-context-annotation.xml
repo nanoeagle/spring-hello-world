@@ -8,10 +8,21 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
  
   <context:component-scan base-package="com.example.helloworld"/>
+  
+  <!-- 
+    beans defined in Java configuration classes can be imported into 
+    XML configuration files as well.
+  -->
+  <!-- <context:annotation-config/>
+  <bean class="com.example.helloworld.basicdependencyinjection.HelloWorldConfig"/>
+  <bean id="renderer" class="com.example.helloworld.basicdependencyinjection.StandardOutMessageRenderer">
+    <property name="messageProvider" ref="thisIsID"/>
+  </bean> -->
+
   <!-- 
     use this for constructor injection with
       xmlns:c="http://www.springframework.org/schema/c"
-   -->
+  -->
   <!-- <bean id="message" class="java.lang.String"
     c:_0="I hope that someone gets my message in a bottle"/> -->
 </beans>

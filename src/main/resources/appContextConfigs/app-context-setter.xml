@@ -5,8 +5,8 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="provider" name="helloProvider, alias2"
-    class="com.example.helloworld.provider.HelloWorldMessageProvider"/>
-  <bean id="renderer" class="com.example.helloworld.renderer.StandardOutMessageRenderer">
+    class="com.example.helloworld.basicdependencyinjection.HelloWorldMessageProvider"/>
+  <bean id="renderer" class="com.example.helloworld.basicdependencyinjection.StandardOutMessageRenderer">
     <property name="messageProvider" ref="provider"/>
     <!-- if using alias. -->
     <!-- <property name="messageProvider"><ref bean="helloProvider"/></property> -->

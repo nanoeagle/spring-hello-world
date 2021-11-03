@@ -1,6 +1,8 @@
 package com.example.helloworld.basicdependencyinjection;
 
+// import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.context.annotation.*;
+// import org.springframework.core.env.Environment;
 
 // Mixed way of xml file and configuration class.
 // @ImportResource(locations = "appContextConfigs/app-context-setter.xml")
@@ -8,19 +10,26 @@ package com.example.helloworld.basicdependencyinjection;
 // @ImportResource(locations = "appContextConfigs/app-context-constructor.xml")
 // @ComponentScan(basePackages = "com.example.helloworld")
 // @Configuration
+// @Import(HelloWorldConfigSupport.class)
 public class HelloWorldConfig {
-    // Below @Beans are alternatives to @ComponentScan above
-    // when not annotate Java classes as beans 
-    // (HelloWorldMessageProvider and StandardOutMessageRenderer).
-    /* @Bean({"thisIsID", "alias1"})
-    public MessageProvider provider() {
-        return new HelloWorldMessageProvider();
-    }
+    // @Autowired
+    // private Environment environment;
 
-    @Bean
-    public MessageRenderer renderer() {
-        MessageRenderer renderer = new StandardOutMessageRenderer();
-        renderer.setMessageProvider(provider());
-        return renderer;
-    } */
+    // // Below @Beans are alternatives to @ComponentScan above
+    // // when not annotate Java classes as beans.    
+    // @Bean({"thisIsID", "alias1"})
+    // public MessageProvider provider() {
+    //     System.out.println("create MessageProvider.");        
+    //     return new ConfigurableMessageProvider(
+    //         environment.getProperty("message"));
+    // }
+
+    // @Bean
+    // @DependsOn(value = "thisIsID")
+    // public MessageRenderer renderer() {
+    //     System.out.println("create MessageRenderer.");
+    //     MessageRenderer renderer = new StandardOutMessageRenderer();
+    //     renderer.setMessageProvider(provider());
+    //     return renderer;
+    // }
 }
