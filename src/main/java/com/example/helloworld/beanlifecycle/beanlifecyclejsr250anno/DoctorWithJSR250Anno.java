@@ -1,7 +1,6 @@
 package com.example.helloworld.beanlifecycle.beanlifecyclejsr250anno;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import javax.annotation.*;
 
 public class DoctorWithJSR250Anno {
     private static final String DEFAULT_NAME = "Eric Clapton";

@@ -1,8 +1,8 @@
 package com.example.helloworld.beanfactory;
 
-import java.security.*;
-
 import javax.annotation.PostConstruct;
+
+import java.security.*;
 
 import org.springframework.beans.factory.FactoryBean;
 
