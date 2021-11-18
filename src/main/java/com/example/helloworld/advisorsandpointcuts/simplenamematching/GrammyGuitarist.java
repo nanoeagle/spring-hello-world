@@ -1,5 +1,6 @@
 package com.example.helloworld.advisorsandpointcuts.simplenamematching;
 
+import com.example.helloworld.advisorsandpointcuts.annotationpointcut.AdviceRequired;
 import com.example.helloworld.contextaware.Guitar;
 
 public class GrammyGuitarist {
@@ -9,6 +10,7 @@ public class GrammyGuitarist {
             "And gravity wants to bring me down");
     }
 
+    @AdviceRequired
     public void sing(Guitar guitar) {
         System.out.println("play: ");
         guitar.play();

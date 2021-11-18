@@ -13,16 +13,35 @@ public class SimpleNameMatchingDemo {
         methodPointcut.addMethodName("sing");
         methodPointcut.addMethodName("rest");
 
-        ProxyFactory proxyFactory = new ProxyFactory();
-        proxyFactory.setTarget(new GrammyGuitarist());
-        proxyFactory.addAdvisor(new DefaultPointcutAdvisor(
+        ProxyFactory proxyFactory1 = new ProxyFactory();
+        proxyFactory1.setTarget(new GrammyGuitarist());
+        proxyFactory1.addAdvisor(new DefaultPointcutAdvisor(
             methodPointcut, new SimpleAdvice()));
-        
-        GrammyGuitarist guitarist = 
-            (GrammyGuitarist) proxyFactory.getProxy();
-        guitarist.sing();
-        guitarist.sing(new Guitar());
-        guitarist.rest();
-        guitarist.talk();
-    }    
+
+        GrammyGuitarist guitarist1 = 
+            (GrammyGuitarist) proxyFactory1.getProxy();
+        guitarist1.sing();
+        guitarist1.sing(new Guitar());
+        guitarist1.rest();
+        guitarist1.talk();
+
+        // or ----------------------
+        System.out.println("\nor ----------------------\n");
+
+        NameMatchMethodPointcutAdvisor advisor = 
+            new NameMatchMethodPointcutAdvisor(new SimpleAdvice());
+        advisor.addMethodName("sing");
+        advisor.addMethodName("rest");
+
+        ProxyFactory proxyFactory2 = new ProxyFactory();
+        proxyFactory2.setTarget(new GrammyGuitarist());
+        proxyFactory2.addAdvisor(advisor);
+
+        GrammyGuitarist guitarist2 = 
+            (GrammyGuitarist) proxyFactory2.getProxy();
+        guitarist2.sing();
+        guitarist2.sing(new Guitar());
+        guitarist2.rest();
+        guitarist2.talk();
+    }
 }
