@@ -1,4 +1,4 @@
-package com.example.helloworld.aop.aopproxies;
+package com.example.helloworld.aop.proxies;
 
 import java.lang.reflect.Method;
 

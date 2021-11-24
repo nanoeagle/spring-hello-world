@@ -1,4 +1,4 @@
-package com.example.helloworld.aop.aopproxies;
+package com.example.helloworld.aop.proxies;
 
 public class DefaultSimpleBean implements SimpleBean {
     @Override
