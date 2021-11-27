@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+    
+  <bean id="proxyGuitaristOne"
+    class="org.springframework.aop.framework.ProxyFactoryBean"
+    p:target-ref="grammyGuitarist"
+    p:interceptorNames-ref="adviceNames"/>
+  
+  <bean id="proxyGuitaristTwo"
+    class="org.springframework.aop.framework.ProxyFactoryBean"
+    p:target-ref="grammyGuitarist"
+    p:interceptorNames-ref="advisorNames"/>
+  
+  <bean id="grammyGuitarist"
+    class="com.example.helloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
+  
+  <util:list id="adviceNames">
+    <value>advice</value>
+  </util:list>
+
+  <util:list id="advisorNames">
+    <value>advisor</value>
+  </util:list>
+  
+  <bean id="advisor" 
+    class="org.springframework.aop.support.DefaultPointcutAdvisor"
+    p:advice-ref="advice">
+    <property name="pointcut">
+      <bean class="org.springframework.aop.aspectj.AspectJExpressionPointcut"
+        p:expression="execution(* sing*(..))"/>
+    </property>
+  </bean>
+
+  <bean id="advice" 
+    class="com.example.helloworld.aop.frameworkservices.proxyfactorybean.AuditAdvice"/>
+</beans>
