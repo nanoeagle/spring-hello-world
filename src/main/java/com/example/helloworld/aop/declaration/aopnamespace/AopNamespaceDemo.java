@@ -1,21 +1,16 @@
-package com.example.helloworld.aop.declaration.proxyfactorybean;
+package com.example.helloworld.aop.declaration.aopnamespace;
 
 import com.example.helloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist;
 import com.example.helloworld.contextaware.Guitar;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class ProxyFactoryBeanDemo {
+public class AopNamespaceDemo {
     public static void main(String[] args) {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-        ctx.load("appContextConfigs/app-context-aop-proxy-factorybean.xml");
+        ctx.load("appContextConfigs/app-context-aop-namespace.xml");
         ctx.refresh();
-
-        System.out.println("Guitarist One:");
-        doStuff(ctx.getBean("proxyGuitaristOne", GrammyGuitarist.class));
-        System.out.println("\nGuitarist Two:");
-        doStuff(ctx.getBean("proxyGuitaristTwo", GrammyGuitarist.class));
-
+        doStuff(ctx.getBean("guitarist", GrammyGuitarist.class));
         ctx.close();
     }
 
