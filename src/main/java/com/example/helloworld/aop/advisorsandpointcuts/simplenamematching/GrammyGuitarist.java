@@ -3,6 +3,9 @@ package com.example.helloworld.aop.advisorsandpointcuts.simplenamematching;
 import com.example.helloworld.aop.advisorsandpointcuts.annotationpointcut.AdviceRequired;
 import com.example.helloworld.contextaware.Guitar;
 
+import org.springframework.stereotype.Component;
+
+@Component("guitarist")
 public class GrammyGuitarist {
     public void sing() {
         System.out.println(
