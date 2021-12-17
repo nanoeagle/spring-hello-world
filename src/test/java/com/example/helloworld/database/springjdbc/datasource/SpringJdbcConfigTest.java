@@ -1,4 +1,4 @@
-package com.example.helloworld.database.springjdbc;
+package com.example.helloworld.database.springjdbc.datasource;
 
 import static org.junit.Assert.*;
 
@@ -12,24 +12,27 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.GenericApplicationContext;
 
 public class SpringJdbcConfigTest {
-	private static Logger logger; 
-	
+	private static final Logger logger; 
+	private GenericApplicationContext context;
+	private DataSource dataSource;
+
 	static {
-		logger = LoggerFactory.getLogger(SpringJdbcConfig.class);
+		logger = LoggerFactory.getLogger(SpringJdbcConfigTest.class);
 	}
 
-	@Test
-	public void testConfig() {
-		GenericApplicationContext context =
-			new AnnotationConfigApplicationContext(SpringJdbcConfig.class);
-		DataSource dataSource = 
-			context.getBean("dataSource", DataSource.class);
-		assertNotNull(dataSource);
-		testDataSource(dataSource);
+	@Before
+	public void init() {
+		context = new AnnotationConfigApplicationContext(SpringJdbcConfig.class);
+		dataSource = context.getBean("dataSource", DataSource.class);
+	}
+
+	@After
+	public void releaseContext() {
 		context.close();
 	}
 
-	private void testDataSource(DataSource dataSource) {
+	@Test
+	public void testDataSource() {
 		String sql = "SELECT 1";
 		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);

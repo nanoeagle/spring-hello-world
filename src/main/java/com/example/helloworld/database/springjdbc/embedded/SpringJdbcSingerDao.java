@@ -1,27 +1,39 @@
-package com.example.helloworld.database.jdbc;
+package com.example.helloworld.database.springjdbc.embedded;
 
 import java.sql.*;
 import java.util.*;
 
-import org.slf4j.*;
+import javax.sql.DataSource;
 
-public class PlainSingerDao implements SingerDao {
-	private static Logger logger;
-	
-	static {
-		logger = LoggerFactory.getLogger(PlainSingerDao.class);
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			logger.error("Problem loading DB driver!", e);
-		}
+import com.example.helloworld.database.jdbc.*;
+
+import org.slf4j.*;
+import org.springframework.beans.factory.*;
+
+public class SpringJdbcSingerDao implements SingerDao, InitializingBean {
+    private static Logger logger;
+
+    static {
+		logger = LoggerFactory.getLogger(SpringJdbcSingerDao.class);
 	}
 
-	@Override
-	public Set<Singer> findAll() {
-		Set<Singer> result = new TreeSet<>(new SingerIDComparator());
+    private DataSource dataSource;
+    
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (dataSource == null)
+            throw new BeanCreationException("Must set dataSource on SingerDao");
+    }
+
+    @Override
+    public Set<Singer> findAll() {
+        Set<Singer> result = new TreeSet<>(new SingerIDComparator());
 		String sql = "select * from singer";
-		try (Connection connection = getConnection();
+		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery()
 		) {
@@ -32,9 +44,9 @@ public class PlainSingerDao implements SingerDao {
 			logger.error("Problem when adding a singer to the result.", e);
 		}
 		return result;
-	}
+    }
 
-	private void addAllSingersToResult(ResultSet resultSet, Set<Singer> result) 
+    private void addAllSingersToResult(ResultSet resultSet, Set<Singer> result) 
 	throws SQLException {
 		while (resultSet.next()) {
 			Singer singer = new Singer();
@@ -50,7 +62,7 @@ public class PlainSingerDao implements SingerDao {
 	public Singer findById(Long id) {
 		Singer result = null;
 		String sql = "select * from singer where id = ?";
-		try (Connection connection = getConnection();
+		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 		) {
 			statement.setLong(1, id);
@@ -73,12 +85,12 @@ public class PlainSingerDao implements SingerDao {
 		return null;
 	}
 
-	@Override
+    @Override
 	public void insert(Singer singer) {
 		String sql = "insert into singer (first_name, last_name, birth_date)"
 			+ " values (?, ?, ?)";
 		int returnGeneratedKeys = Statement.RETURN_GENERATED_KEYS;
-		try (Connection connection = getConnection();
+		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = 
 				connection.prepareStatement(sql, returnGeneratedKeys);
 		) {
@@ -101,7 +113,7 @@ public class PlainSingerDao implements SingerDao {
 	@Override
 	public void delete(Long singerId) {
 		String sql = "delete from singer where id=?";
-		try (Connection connection = getConnection();
+		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 		) {
 			statement.setLong(1, singerId);
@@ -111,13 +123,7 @@ public class PlainSingerDao implements SingerDao {
 		}
 	}
 
-	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(
-			"jdbc:mysql://localhost:3306/musicdb?useSSL=true",
-			"root", "mysql");
-	}
-
-	private class SingerIDComparator implements Comparator<Singer> {
+    private class SingerIDComparator implements Comparator<Singer> {
 		@Override
 		public int compare(Singer s1, Singer s2) {
 			return (int) (s1.getId() - s2.getId());

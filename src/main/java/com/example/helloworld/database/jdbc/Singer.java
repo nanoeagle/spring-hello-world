@@ -59,6 +59,18 @@ public class Singer implements Serializable {
 	}
 
 	@Override
+	public int hashCode() {
+		return id.intValue();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || getClass() != obj.getClass()) return false;
+		Singer another = (Singer) obj;
+		return id == another.id ? true : false;
+	}
+
+	@Override
 	public String toString() {
 		return "Singer - Id: " + id + ", First name: " + firstName
 			+ ", Last name: " + lastName + ", Birthday: " + birthDate;

@@ -1,4 +1,4 @@
-package com.example.helloworld.database.springjdbc;
+package com.example.helloworld.database.springjdbc.datasource;
 
 // import java.sql.Driver;
 
