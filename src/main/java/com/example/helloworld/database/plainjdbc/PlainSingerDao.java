@@ -1,4 +1,4 @@
-package com.example.helloworld.database.jdbc;
+package com.example.helloworld.database.plainjdbc;
 
 import java.sql.*;
 import java.util.*;
@@ -18,14 +18,14 @@ public class PlainSingerDao implements SingerDao {
 	}
 
 	@Override
-	public Set<Singer> findAll() {
-		Set<Singer> result = new TreeSet<>(new SingerIDComparator());
+	public List<Singer> findAll() {
+		List<Singer> result = null;
 		String sql = "select * from singer";
 		try (Connection connection = getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery()
 		) {
-			addAllSingersToResult(resultSet, result);
+			result = createTheResultFrom(resultSet);
 		} catch (SQLException e) {
 			logger.error("Problem when executing SELECT.", e);
 		} catch (RuntimeException e) {
@@ -34,8 +34,9 @@ public class PlainSingerDao implements SingerDao {
 		return result;
 	}
 
-	private void addAllSingersToResult(ResultSet resultSet, Set<Singer> result) 
+	private List<Singer> createTheResultFrom(ResultSet resultSet) 
 	throws SQLException {
+		List<Singer> result = new ArrayList<>();
 		while (resultSet.next()) {
 			Singer singer = new Singer();
 			singer.setId(resultSet.getLong("id"));
@@ -44,6 +45,7 @@ public class PlainSingerDao implements SingerDao {
 			singer.setBirthDate(resultSet.getDate("birth_date"));
 			result.add(singer);
 		}
+		return result;
 	}
 
 	@Override
@@ -99,7 +101,7 @@ public class PlainSingerDao implements SingerDao {
 	}
 
 	@Override
-	public void delete(Long singerId) {
+	public void deleteById(Long singerId) {
 		String sql = "delete from singer where id=?";
 		try (Connection connection = getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -115,12 +117,5 @@ public class PlainSingerDao implements SingerDao {
 		return DriverManager.getConnection(
 			"jdbc:mysql://localhost:3306/musicdb?useSSL=true",
 			"root", "mysql");
-	}
-
-	private class SingerIDComparator implements Comparator<Singer> {
-		@Override
-		public int compare(Singer s1, Singer s2) {
-			return (int) (s1.getId() - s2.getId());
-		}
 	}
 }

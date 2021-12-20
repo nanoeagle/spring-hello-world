@@ -2,7 +2,7 @@ package com.example.helloworld.database.springjdbc.embedded;
 
 // import javax.sql.DataSource;
 
-// import com.example.helloworld.database.jdbc.SingerDao;
+// import com.example.helloworld.database.plainjdbc.SingerDao;
 
 // import org.slf4j.*;
 // import org.springframework.context.annotation.*;

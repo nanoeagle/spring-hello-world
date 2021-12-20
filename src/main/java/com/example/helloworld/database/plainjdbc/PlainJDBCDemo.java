@@ -1,4 +1,4 @@
-package com.example.helloworld.database.jdbc;
+package com.example.helloworld.database.plainjdbc;
 
 import java.sql.Date;
 import java.util.*;
@@ -27,15 +27,16 @@ public class PlainJDBCDemo {
 
 		logger.info("-------------");
 		logger.info("Deleting the previous created singer.");
-		demo.singerDao.delete(newSinger.getId());
+		demo.singerDao.deleteById(newSinger.getId());
 
 		logger.info("Listing data after the new singer is deleted:");
 		demo.listAllSingers();
 	}
 		
 	private void listAllSingers() {
-		for (Singer singer : singerDao.findAll()) 
-			logger.info(singer.toString());
+		List<Singer> allSingers = singerDao.findAll();
+		allSingers.sort(new SingerIDComparator());
+		for (Singer singer : allSingers) logger.info(singer.toString());
 	}
 
 	private Singer insertNewSingerBy(SingerDao singerDao) {
@@ -46,5 +47,12 @@ public class PlainJDBCDemo {
 			1991, Calendar.FEBRUARY, 17).getTimeInMillis()));
 		singerDao.insert(singer);
 		return singer;
+	}
+
+	private class SingerIDComparator implements Comparator<Singer> {
+		@Override
+		public int compare(Singer s1, Singer s2) {
+			return (int) (s1.getId() - s2.getId());
+		}
 	}
 }

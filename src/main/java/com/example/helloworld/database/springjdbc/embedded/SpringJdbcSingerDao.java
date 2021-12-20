@@ -5,7 +5,7 @@ import java.util.*;
 
 import javax.sql.DataSource;
 
-import com.example.helloworld.database.jdbc.*;
+import com.example.helloworld.database.plainjdbc.*;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.*;
@@ -30,24 +30,25 @@ public class SpringJdbcSingerDao implements SingerDao, InitializingBean {
     }
 
     @Override
-    public Set<Singer> findAll() {
-        Set<Singer> result = new TreeSet<>(new SingerIDComparator());
+	public List<Singer> findAll() {
+		List<Singer> result = null;
 		String sql = "select * from singer";
 		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery()
 		) {
-			addAllSingersToResult(resultSet, result);
+			result = createTheResultFrom(resultSet);
 		} catch (SQLException e) {
 			logger.error("Problem when executing SELECT.", e);
 		} catch (RuntimeException e) {
 			logger.error("Problem when adding a singer to the result.", e);
 		}
 		return result;
-    }
+	}
 
-    private void addAllSingersToResult(ResultSet resultSet, Set<Singer> result) 
+	private List<Singer> createTheResultFrom(ResultSet resultSet) 
 	throws SQLException {
+		List<Singer> result = new ArrayList<>();
 		while (resultSet.next()) {
 			Singer singer = new Singer();
 			singer.setId(resultSet.getLong("id"));
@@ -56,6 +57,7 @@ public class SpringJdbcSingerDao implements SingerDao, InitializingBean {
 			singer.setBirthDate(resultSet.getDate("birth_date"));
 			result.add(singer);
 		}
+		return result;
 	}
 
 	@Override
@@ -111,7 +113,7 @@ public class SpringJdbcSingerDao implements SingerDao, InitializingBean {
 	}
 
 	@Override
-	public void delete(Long singerId) {
+	public void deleteById(Long singerId) {
 		String sql = "delete from singer where id=?";
 		try (Connection connection = dataSource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -120,13 +122,6 @@ public class SpringJdbcSingerDao implements SingerDao, InitializingBean {
 			statement.execute();
 		} catch (SQLException e) {
 			logger.error("Problem when executing DELETE.", e);
-		}
-	}
-
-    private class SingerIDComparator implements Comparator<Singer> {
-		@Override
-		public int compare(Singer s1, Singer s2) {
-			return (int) (s1.getId() - s2.getId());
 		}
 	}
 }

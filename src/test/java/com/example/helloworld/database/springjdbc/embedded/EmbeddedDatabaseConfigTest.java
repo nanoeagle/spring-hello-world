@@ -2,7 +2,7 @@ package com.example.helloworld.database.springjdbc.embedded;
 
 import static org.junit.Assert.assertTrue;
 
-import com.example.helloworld.database.jdbc.*;
+import com.example.helloworld.database.plainjdbc.*;
 
 import org.junit.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,7 +14,8 @@ public class EmbeddedDatabaseConfigTest {
 
 	@Before
 	public void init() {
-		context = new AnnotationConfigApplicationContext(EmbeddedDatabaseConfig.class);
+		context = new AnnotationConfigApplicationContext(
+			EmbeddedDatabaseConfig.class);
 		singerDao = context.getBean("singerDao", SingerDao.class);
 	}
 

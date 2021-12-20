@@ -1,4 +1,4 @@
-package com.example.helloworld.database.jdbc;
+package com.example.helloworld.database.plainjdbc;
 
 import java.io.Serializable;
 import java.sql.Date;

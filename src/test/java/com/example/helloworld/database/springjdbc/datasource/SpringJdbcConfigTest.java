@@ -12,12 +12,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.GenericApplicationContext;
 
 public class SpringJdbcConfigTest {
-	private static final Logger logger; 
+	private static final Logger LOGGER; 
 	private GenericApplicationContext context;
 	private DataSource dataSource;
 
 	static {
-		logger = LoggerFactory.getLogger(SpringJdbcConfigTest.class);
+		LOGGER = LoggerFactory.getLogger(SpringJdbcConfigTest.class);
 	}
 
 	@Before
@@ -44,7 +44,7 @@ public class SpringJdbcConfigTest {
 			}
 		} catch (Exception e) {
 			String errorMessage = "Something unexpected happened.";
-			logger.debug(errorMessage, e);
+			LOGGER.debug(errorMessage, e);
 			fail(errorMessage);
 		}
 	}
