@@ -43,10 +43,7 @@ public class Singer implements Serializable {
 	}
 
 	public boolean addAlbum(Album album) {
-		if (albums == null) {
-			albums = new TreeSet<>();
-		} else if (albums.contains(album)) 
-			return false;
+		if (albums == null) albums = new TreeSet<>();
 		return albums.add(album);
 	}
 

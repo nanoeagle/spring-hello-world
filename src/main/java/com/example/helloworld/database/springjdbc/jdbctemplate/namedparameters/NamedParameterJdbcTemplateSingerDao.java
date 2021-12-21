@@ -1,24 +1,27 @@
-package com.example.helloworld.database.springjdbc.jdbctemplate;
+package com.example.helloworld.database.springjdbc.jdbctemplate.namedparameters;
 
 import java.util.*;
 
 import com.example.helloworld.database.plainjdbc.*;
+import com.example.helloworld.database.springjdbc.jdbctemplate.*;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.*;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-public class JdbcTemplateSingerDao implements SingerDao, InitializingBean {
+public class NamedParameterJdbcTemplateSingerDao 
+implements SingerDao, InitializingBean {
     private static Logger logger;
 
     static {
-		logger = LoggerFactory.getLogger(JdbcTemplateSingerDao.class);
+		logger = LoggerFactory.getLogger(
+			NamedParameterJdbcTemplateSingerDao.class);
 	}
 
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
     
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+    public void setJdbcTemplate(NamedParameterJdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
@@ -54,34 +57,50 @@ public class JdbcTemplateSingerDao implements SingerDao, InitializingBean {
 
 	@Override
 	public Singer findById(Long id) {
-		String sql = "select * from singer where id = ?";
+		String sql = "select * from singer where id = :id";
 		try {
-			return jdbcTemplate.queryForObject(sql, new SingerRowMapper(), id);
+			return jdbcTemplate.queryForObject(sql, 
+				createParamMapHaving(id), new SingerRowMapper());
 		} catch (DataAccessException e) {
 			logger.error("Problem when executing SELECT.", e);
             return null;
 		}
 	}
 
-    @Override
+    private Map<String, String> createParamMapHaving(Long id) {
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("id", id.toString());
+		return paramMap;
+	}
+
+	@Override
 	public void insert(Singer singer) {
 		String sql = "insert into singer " + 
-			"(first_name, last_name, birth_date) " + "values (?, ?, ?)";
+			"(first_name, last_name, birth_date) " + 
+			"values (:fName, :lName, :dob)";
 		try {
-			jdbcTemplate.update(sql, singer.getFirstName(), 
-				singer.getLastName(), singer.getBirthDate());
+			jdbcTemplate.update(sql, createParamMapUsing(singer));
 		} catch (DataAccessException e) {
 			logger.error("Problem when executing INSERT.", e);
 		}
 	}
 
+	private Map<String, String> createParamMapUsing(Singer singer) {
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("fName", singer.getFirstName());
+		paramMap.put("lName", singer.getLastName());
+		paramMap.put("dob", singer.getBirthDate().toString());
+		return paramMap;
+	}
+
 	@Override
-	public void deleteById(Long singerId) {
-		String deleteFromAlbum = "delete from album where singer_id=?";
-		String deleteFromSinger = "delete from singer where id=?";
+	public void deleteById(Long id) {
+		String deleteFromAlbum = "delete from album where singer_id = :id";
+		String deleteFromSinger = "delete from singer where id = :id";
 		try {
-			jdbcTemplate.update(deleteFromAlbum, singerId);
-			jdbcTemplate.update(deleteFromSinger, singerId);
+			Map<String, String> paramMap = createParamMapHaving(id);
+			jdbcTemplate.update(deleteFromAlbum, paramMap);
+			jdbcTemplate.update(deleteFromSinger, paramMap);
 		} catch (DataAccessException e) {
 			logger.error("Problem when executing DELETE.", e);
 		}

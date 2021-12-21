@@ -61,6 +61,11 @@ public class SpringJdbcSingerDao implements SingerDao, InitializingBean {
 	}
 
 	@Override
+	public List<Singer> findAllWithAlbums() {
+		return null;
+	}
+
+	@Override
 	public Singer findById(Long id) {
 		Singer result = null;
 		String sql = "select * from singer where id = ?";

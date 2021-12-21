@@ -6,7 +6,7 @@ import com.example.helloworld.database.plainjdbc.Singer;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class SingerRowMapper implements RowMapper<Singer> {
+public final class SingerRowMapper implements RowMapper<Singer> {
     @Override
     public Singer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Singer singer = new Singer();

@@ -3,6 +3,7 @@ package com.example.helloworld.database.springjdbc.jdbctemplate;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 import java.util.*;
@@ -16,8 +17,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.GenericApplicationContext;
 
 public class JdbcTemplateSingerDaoTest {
-    private GenericApplicationContext context;
-    private SingerDao singerDao;
+    protected GenericApplicationContext context;
+    protected SingerDao singerDao;
 
     @Before
     public void init() {
@@ -40,12 +41,22 @@ public class JdbcTemplateSingerDaoTest {
     
     private List<Singer> createExpectedSingers() {
         String[][] allSingersInfo = {
-            new String[] {"1", "John", "Mayer", "1977-10-16"},
-            new String[] {"2", "Eric", "Clapton", "1945-03-30"},
-            new String[] {"3", "John", "Butler", "1975-04-01"}
-        };
+            {"1", "John", "Mayer", "1977-10-16"},
+            {"2", "Eric", "Clapton", "1945-03-30"},
+            {"3", "John", "Butler", "1975-04-01"}};
         return Arrays.stream(allSingersInfo)
-            .map(new SingerInfoToSingerMapper()).collect(Collectors.toList());
+            .map(new InfoToSingerMapper()).collect(Collectors.toList());
+    }
+
+    @Test
+    public void testFindAllWithAlbums() {
+        List<Singer> allFoundSingers = singerDao.findAllWithAlbums();
+        allFoundSingers.forEach(singer -> {
+            System.out.println(singer);
+            if (singer.getAlbums() != null) singer.getAlbums()
+                .forEach(album -> System.out.println("\t" + album));
+        });
+        assertTrue(allFoundSingers.size() == 3);
     }
 
     @Test
@@ -57,10 +68,9 @@ public class JdbcTemplateSingerDaoTest {
     }
 
     private Singer createExpectedSinger(String... info) {
-        String[][] singerInfo = 
-            {new String[] {info[0], info[1], info[2], info[3]}};
+        String[][] singerInfo = {{info[0], info[1], info[2], info[3]}};
         return Stream.of(singerInfo)
-            .map(new SingerInfoToSingerMapper()).findFirst().get();
+            .map(new InfoToSingerMapper()).findFirst().get();
     }
 
     @Test
@@ -69,7 +79,7 @@ public class JdbcTemplateSingerDaoTest {
             createExpectedSinger("1", "John", "Mayer", "1977-10-16");
         singerDao.deleteById(deletedSinger.getId());
         Singer nonexistentSinger = singerDao.findById(deletedSinger.getId());
-        assertThat(nonexistentSinger, is(nullValue()));
+        assertNull(nonexistentSinger);
     }
 
     @Test
@@ -84,7 +94,7 @@ public class JdbcTemplateSingerDaoTest {
         assertThat(existingSinger, equalTo(insertedSinger));
     }
 
-    private class SingerInfoToSingerMapper implements Function<String[], Singer> {
+    private class InfoToSingerMapper implements Function<String[], Singer> {
         @Override
         public Singer apply(String[] singerInfo) {
             Singer singer = new Singer();

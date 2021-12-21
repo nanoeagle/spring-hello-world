@@ -49,6 +49,11 @@ public class PlainSingerDao implements SingerDao {
 	}
 
 	@Override
+	public List<Singer> findAllWithAlbums() {
+		return null;
+	}
+
+	@Override
 	public Singer findById(Long id) {
 		Singer result = null;
 		String sql = "select * from singer where id = ?";
