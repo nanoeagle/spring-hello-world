@@ -5,13 +5,13 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="vocalistBean" scope="prototype"
-    class="com.example.helloworld.lookupmethodinjection.Vocalist"/>
+    class="com.example.springhelloworld.lookupmethodinjection.Vocalist"/>
   <bean id="abstractLookup" 
-    class="com.example.helloworld.lookupmethodinjection.AbstractLookup">
+    class="com.example.springhelloworld.lookupmethodinjection.AbstractLookup">
     <lookup-method name="getMyVocalist" bean="vocalistBean"/>
   </bean>
   <bean id="standardLookup"
-    class="com.example.helloworld.lookupmethodinjection.StandardLookup">
+    class="com.example.springhelloworld.lookupmethodinjection.StandardLookup">
     <property name="vocalist" ref="vocalistBean"/>
  </bean>
 </beans>

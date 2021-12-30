@@ -4,19 +4,19 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="fooOne" class="com.example.helloworld.autowiring.FooImplOne"/>
+  <bean id="fooOne" class="com.example.springhelloworld.autowiring.FooImplOne"/>
   <bean id="fooTwo" primary="true"
-    class="com.example.helloworld.autowiring.FooImplTwo"/>
-  <bean id="fooThree" class="com.example.helloworld.autowiring.FooImplThree"/>
+    class="com.example.springhelloworld.autowiring.FooImplTwo"/>
+  <bean id="fooThree" class="com.example.springhelloworld.autowiring.FooImplThree"/>
 
-  <bean id="barOne" class="com.example.helloworld.autowiring.Bar"/>
+  <bean id="barOne" class="com.example.springhelloworld.autowiring.Bar"/>
 
   <bean id="targetByName" autowire="byName"
-    class="com.example.helloworld.autowiring.Target" lazy-init="true"/>
+    class="com.example.springhelloworld.autowiring.Target" lazy-init="true"/>
     
   <bean id="targetByType" autowire="byType"
-    class="com.example.helloworld.autowiring.Target" lazy-init="true"/>
+    class="com.example.springhelloworld.autowiring.Target" lazy-init="true"/>
     
   <bean id="targetConstructor" autowire="constructor"
-    class="com.example.helloworld.autowiring.Target" lazy-init="true"/>
+    class="com.example.springhelloworld.autowiring.Target" lazy-init="true"/>
 </beans>

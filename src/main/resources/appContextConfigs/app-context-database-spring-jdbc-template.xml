@@ -10,18 +10,18 @@
     http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
  
   <bean id="singerDao"
-    class="com.example.helloworld.database.springjdbc.jdbctemplate.JdbcTemplateSingerDao" 
+    class="com.example.springhelloworld.database.springjdbc.jdbctemplate.JdbcTemplateSingerDao" 
     p:jdbcTemplate-ref="jdbcTemplate"/>
 
   <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
     c:dataSource-ref="dataSource" p:exceptionTranslator-ref="exceptionTranslator"/>
 
   <bean id="exceptionTranslator" 
-    class="com.example.helloworld.database.springjdbc.jdbctemplate.MyCustomSQLErrorCodesTranslator" 
+    class="com.example.springhelloworld.database.springjdbc.jdbctemplate.MyCustomSQLErrorCodesTranslator" 
     c:dataSource-ref="dataSource"/>
 
   <jdbc:embedded-database id="dataSource" type="H2">
     <jdbc:script location="databases/H2/schema.sql"/>
-    <jdbc:script location="databases/H2/test-data.sql"/>
+    <jdbc:script location="databases/H2/data.sql"/>
   </jdbc:embedded-database>
 </beans>

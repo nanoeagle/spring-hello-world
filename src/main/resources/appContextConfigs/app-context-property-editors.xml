@@ -9,11 +9,11 @@
     http://www.springframework.org/schema/util/spring-util.xsd">
 
   <util:list id="registrarList">
-    <bean class="com.example.helloworld.editorsforproperties.CustomPropertyEditorRegistrar"/>
+    <bean class="com.example.springhelloworld.editorsforproperties.CustomPropertyEditorRegistrar"/>
   </util:list>
   <util:map id="customEditorMap">
-    <entry key="com.example.helloworld.editorsforproperties.FullName" 
-      value="com.example.helloworld.editorsforproperties.FullNamePropertyEditor"/>
+    <entry key="com.example.springhelloworld.editorsforproperties.FullName" 
+      value="com.example.springhelloworld.editorsforproperties.FullNamePropertyEditor"/>
   </util:map>
   <bean id="customEditorConfigurer"
     class="org.springframework.beans.factory.config.CustomEditorConfigurer"
@@ -29,7 +29,7 @@
     <prop key="age">32</prop>
   </util:properties>
   <bean id="propertyEditorBean"
-    class="com.example.helloworld.editorsforproperties.PropertyEditorBean"
+    class="com.example.springhelloworld.editorsforproperties.PropertyEditorBean"
     p:bytes="John Mayer"
     p:character="A"
     p:genericClass="java.lang.String"
@@ -46,6 +46,6 @@
     p:url="https://spring.io/"/>
   
   <bean id="customPropertyEditorBean" 
-    class="com.example.helloworld.editorsforproperties.CustomPropertyEditorBean"
+    class="com.example.springhelloworld.editorsforproperties.CustomPropertyEditorBean"
     p:fullName="Jinki Lee"/>
 </beans>

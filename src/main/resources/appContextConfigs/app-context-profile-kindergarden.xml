@@ -6,5 +6,5 @@
   profile="kindergarden">
 
   <bean id="foodProvider"
-    class="com.example.helloworld.configprofiles.KindergardenFoodProvider"/>
+    class="com.example.springhelloworld.configprofiles.KindergardenFoodProvider"/>
 </beans>

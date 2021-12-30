@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="gopher" class="com.example.helloworld.contextaware.Guitar"/>
-  <bean id="johnMayer" class="com.example.helloworld.contextaware.Musician"
+  <bean id="gopher" class="com.example.springhelloworld.contextaware.Guitar"/>
+  <bean id="johnMayer" class="com.example.springhelloworld.contextaware.Musician"
     depends-on="gopher"/>
 </beans>

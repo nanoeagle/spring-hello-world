@@ -9,12 +9,12 @@
   default-destroy-method="destroy">
     
   <bean id="doctor1"
-    class="com.example.helloworld.beanlifecycle.beanlifecyclemethod.Doctor"
+    class="com.example.springhelloworld.beanlifecycle.beanlifecyclemethod.Doctor"
     p:name="John Mayer" p:age="39"/>
   <bean id="doctor2"
-    class="com.example.helloworld.beanlifecycle.beanlifecyclemethod.Doctor"
+    class="com.example.springhelloworld.beanlifecycle.beanlifecyclemethod.Doctor"
     p:age="72"/>
   <bean id="doctor3"
-    class="com.example.helloworld.beanlifecycle.beanlifecyclemethod.Doctor"
+    class="com.example.springhelloworld.beanlifecycle.beanlifecyclemethod.Doctor"
     p:name="John Butler"/>
 </beans>

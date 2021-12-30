@@ -10,7 +10,7 @@
     
   <aop:config>
     <aop:pointcut id="pointcut" expression="execution(
-      * sing*(com.example.helloworld.contextaware.Guitar)) 
+      * sing*(com.example.springhelloworld.contextaware.Guitar)) 
       and args(guitar) and bean(guitarist1)"/>  
     <aop:aspect ref="advice">
       <aop:before method="simpleBeforeAdvice" pointcut-ref="pointcut"/>
@@ -21,9 +21,9 @@
   </aop:config>
   
   <bean id="advice" 
-    class="com.example.helloworld.aop.declaration.aopnamespace.ComplexAuditAdviceJoinPoint"/>
+    class="com.example.springhelloworld.aop.declaration.aopnamespace.ComplexAuditAdviceJoinPoint"/>
   <bean id="guitarist1"
-    class="com.example.helloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
+    class="com.example.springhelloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
   <bean id="guitarist2"
-    class="com.example.helloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
+    class="com.example.springhelloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
 </beans>

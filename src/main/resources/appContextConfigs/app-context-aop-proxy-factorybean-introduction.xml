@@ -12,7 +12,7 @@
     class="org.springframework.aop.framework.ProxyFactoryBean"
     p:proxyTargetClass="true">
     <property name="target">
-      <bean class="com.example.helloworld.aop.introduction.Contact"
+      <bean class="com.example.springhelloworld.aop.introduction.Contact"
         p:name="Name 1"/>
     </property>
     <property name="interceptorNames">
@@ -21,5 +21,5 @@
   </bean>
   
   <bean id="advisor" 
-    class="com.example.helloworld.aop.introduction.IsModifiedAdvisor"/>
+    class="com.example.springhelloworld.aop.introduction.IsModifiedAdvisor"/>
 </beans>

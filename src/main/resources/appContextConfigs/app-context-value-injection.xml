@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="valueInjection" 
-    class="com.example.helloworld.simplevalueinjection.SimpleValueInjection"
+    class="com.example.springhelloworld.simplevalueinjection.SimpleValueInjection"
     p:name="John Mayer"
     p:age="39"
     p:height="1.92"

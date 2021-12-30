@@ -6,11 +6,11 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
  
-  <bean id="song1" class="com.example.helloworld.nestingappcontext.Song"
+  <bean id="song1" class="com.example.springhelloworld.nestingappcontext.Song"
     p:title-ref="parentTitle"/>
-  <bean id="song2" class="com.example.helloworld.nestingappcontext.Song"
+  <bean id="song2" class="com.example.springhelloworld.nestingappcontext.Song"
     p:title-ref="childTitle"/>
-  <bean id="song3" class="com.example.helloworld.nestingappcontext.Song">
+  <bean id="song3" class="com.example.springhelloworld.nestingappcontext.Song">
     <property name="title">
       <ref parent="childTitle"/>
     </property>

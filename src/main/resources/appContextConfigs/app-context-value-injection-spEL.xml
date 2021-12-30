@@ -6,10 +6,10 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="valueInjectionConfig"
-    class="com.example.helloworld.springexpressionlanguage.SimpleValueInjectionSpELConfig"/>
+    class="com.example.springhelloworld.springexpressionlanguage.SimpleValueInjectionSpELConfig"/>
   
   <bean id="valueInjectionSpEL" 
-    class="com.example.helloworld.springexpressionlanguage.SimpleValueInjectionSpEL"
+    class="com.example.springhelloworld.springexpressionlanguage.SimpleValueInjectionSpEL"
     p:name="#{valueInjectionConfig.name}"
     p:age="#{valueInjectionConfig.age + 1}"
     p:height="#{valueInjectionConfig.height}"

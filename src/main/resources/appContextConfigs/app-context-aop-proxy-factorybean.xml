@@ -19,7 +19,7 @@
     p:interceptorNames-ref="advisorNames"/>
   
   <bean id="grammyGuitarist"
-    class="com.example.helloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
+    class="com.example.springhelloworld.aop.advisorsandpointcuts.simplenamematching.GrammyGuitarist"/>
   
   <util:list id="adviceNames">
     <value>advice</value>
@@ -39,5 +39,5 @@
   </bean>
 
   <bean id="advice" 
-    class="com.example.helloworld.aop.frameworkservices.proxyfactorybean.AuditAdvice"/>
+    class="com.example.springhelloworld.aop.frameworkservices.proxyfactorybean.AuditAdvice"/>
 </beans>

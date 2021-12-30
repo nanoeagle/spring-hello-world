@@ -5,8 +5,8 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="messageEventListener" 
-    class="com.example.helloworld.appevents.MessageEventListener"/>
+    class="com.example.springhelloworld.appevents.MessageEventListener"/>
   
   <bean id="publisher" 
-    class="com.example.helloworld.appevents.MessageEventPublisher"/>
+    class="com.example.springhelloworld.appevents.MessageEventPublisher"/>
 </beans>

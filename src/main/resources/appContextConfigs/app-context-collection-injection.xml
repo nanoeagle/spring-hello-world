@@ -5,10 +5,10 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="lyricHolder"
-      class="com.example.helloworld.collectioninjection.LyricHolder"/>
+      class="com.example.springhelloworld.collectioninjection.LyricHolder"/>
     
     <bean id="injectCollection"
-      class="com.example.helloworld.collectioninjection.CollectionInjection">
+      class="com.example.springhelloworld.collectioninjection.CollectionInjection">
       <property name="map">
         <map>
           <entry key="someValue" value="It's a Friday, we finally made it"/>

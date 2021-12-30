@@ -5,15 +5,15 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="methodReplacer"
-    class="com.example.helloworld.methodreplacement.FormatMessageReplacer"/>
+    class="com.example.springhelloworld.methodreplacement.FormatMessageReplacer"/>
   
   <bean id="replacementTarget"
-    class="com.example.helloworld.methodreplacement.ReplacementTarget">
+    class="com.example.springhelloworld.methodreplacement.ReplacementTarget">
     <replaced-method name="formatMessage" replacer="methodReplacer">
       <arg-type>String</arg-type>
     </replaced-method>
   </bean>
 
   <bean id="standardReplacementTarget"
-    class="com.example.helloworld.methodreplacement.ReplacementTarget"/>
+    class="com.example.springhelloworld.methodreplacement.ReplacementTarget"/>
 </beans>

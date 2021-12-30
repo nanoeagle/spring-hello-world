@@ -12,7 +12,7 @@
     location="supportFiles/application.properties"/>
 
   <bean id="appProperties"
-    class="com.example.helloworld.environment.AppProperties"
+    class="com.example.springhelloworld.environment.AppProperties"
     p:applicationHome="${application.home}"
     p:userHome="${user.home}"/>
 </beans>

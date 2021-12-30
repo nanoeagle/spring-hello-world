@@ -7,12 +7,12 @@
   default-lazy-init="true">
     
   <bean id="dancer1"
-    class="com.example.helloworld.beanlifecycle.beanlifecycleinterface.Dancer"
+    class="com.example.springhelloworld.beanlifecycle.beanlifecycleinterface.Dancer"
     p:name="John Mayer" p:age="39"/>
   <bean id="dancer2"
-    class="com.example.helloworld.beanlifecycle.beanlifecycleinterface.Dancer"
+    class="com.example.springhelloworld.beanlifecycle.beanlifecycleinterface.Dancer"
     p:age="72"/>
   <bean id="dancer3"
-    class="com.example.helloworld.beanlifecycle.beanlifecycleinterface.Dancer"
+    class="com.example.springhelloworld.beanlifecycle.beanlifecycleinterface.Dancer"
     p:name="John Butler"/>
 </beans>

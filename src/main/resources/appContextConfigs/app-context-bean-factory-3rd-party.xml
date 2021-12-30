@@ -6,20 +6,20 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="shaMesDigestFactory" 
-    class="com.example.helloworld.beanfactory.MessageDigestFactory"
+    class="com.example.springhelloworld.beanfactory.MessageDigestFactory"
     p:algorithm="SHA1"/>
   
   <bean id="shaMesDigest" factory-bean="shaMesDigestFactory"
     factory-method="createInstance"/>
 
   <bean id="defaultMesDigestFactory" 
-    class="com.example.helloworld.beanfactory.MessageDigestFactory"/>
+    class="com.example.springhelloworld.beanfactory.MessageDigestFactory"/>
 
   <bean id="defaultMesDigest" factory-bean="defaultMesDigestFactory"
     factory-method="createInstance"/>
 
   <bean id="mesDigester" 
-    class="com.example.helloworld.beanfactory.MessageDigester"
+    class="com.example.springhelloworld.beanfactory.MessageDigester"
     p:mesDigest1-ref="shaMesDigest"
     p:mesDigest2-ref="defaultMesDigest"/>
 </beans>

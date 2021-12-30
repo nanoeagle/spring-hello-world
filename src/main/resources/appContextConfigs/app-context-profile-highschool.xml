@@ -6,5 +6,5 @@
   profile="highschool">
 
   <bean id="foodProvider"
-    class="com.example.helloworld.configprofiles.HighschoolFoodProvider"/>
+    class="com.example.springhelloworld.configprofiles.HighschoolFoodProvider"/>
 </beans>
