@@ -21,7 +21,7 @@
     c:dataSource-ref="dataSource"/>
 
   <jdbc:embedded-database id="dataSource" type="H2">
-    <jdbc:script location="databases/H2/schema.sql"/>
-    <jdbc:script location="databases/H2/data.sql"/>
+    <jdbc:script location="databases/H2/springjdbc/schema.sql"/>
+    <jdbc:script location="databases/H2/springjdbc/data.sql"/>
   </jdbc:embedded-database>
 </beans>

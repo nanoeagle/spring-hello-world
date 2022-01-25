@@ -30,7 +30,7 @@ public class JdbcTemplateDatabaseConfig {
 	// 	try {
 	// 		EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
 	// 		return dbBuilder.setType(EmbeddedDatabaseType.H2)
-	// 			.addScripts("databases/H2/schema.sql", "databases/H2/data.sql")
+	// 			.addScripts("databases/H2/springjdbc/schema.sql", "databases/H2/springjdbc/data.sql")
 	// 			.build();
 	// 	} catch (Exception e) {
 	// 		LOGGER.error("Embedded dataSource bean cannot be created!", e);

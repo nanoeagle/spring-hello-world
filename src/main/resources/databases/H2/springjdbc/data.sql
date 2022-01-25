@@ -9,4 +9,4 @@ insert into album (singer_id, title, release_date)
 insert into album (singer_id, title, release_date) 
     values (1, 'Battle Studies', '2009-11-17');
 insert into album (singer_id, title, release_date) 
-    values (2, ' From The Cradle ', '1994-09-13');
+    values (2, 'From The Cradle', '1994-09-13');
