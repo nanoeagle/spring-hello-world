@@ -1,4 +1,4 @@
-package com.example.springhelloworld.database.hibernate.entities;
+package com.example.springhelloworld.database.jpa.entities;
 
 import static org.hibernate.annotations.CascadeType.*;
 
@@ -30,12 +30,11 @@ public class Singer extends AbstractEntity {
     @Column(name = "birth_date")
     private Date birthDate;
     
-    @OneToMany(mappedBy = "singer", 
-        cascade = CascadeType.ALL, 
+    @OneToMany(mappedBy = "singer", cascade = CascadeType.ALL, 
         orphanRemoval = true)
     private Set<Album> albums;
     
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Cascade(SAVE_UPDATE)
     @JoinTable(name = "singer_instrument",
         joinColumns = @JoinColumn(name = "SINGER_ID"),

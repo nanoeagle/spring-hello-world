@@ -80,26 +80,27 @@ public class HibernateSingerDaoTest {
             (new GregorianCalendar(1962, 3, 20)).getTimeInMillis()));
         singer.addAlbum(album);
 
-        Instrument violin = instrumentDao.findByName("Violin");
-        Instrument cello = instrumentDao.findByName("Cello");
-        if (violin == null) {
-            violin = new Instrument();
-            violin.setName("Violin");
-        }
-        if (cello == null) {
-            cello = new Instrument();
-            cello.setName("Cello");
-        }
+        Instrument violin = getInstrument("Violin");
+        Instrument cello = getInstrument("Cello");
         singer.setInstruments(Set.of(violin, cello));
         return singer;
+    }
+
+    private Instrument getInstrument(String name) {
+        Instrument instrument = instrumentDao.findByName(name);
+        if (instrument == null) {
+            instrument = new Instrument();
+            instrument.setName(name);
+        }
+        return instrument;
     }
 
     @Test
     public void testUpdate() {
         Singer singer = singerDao.findById(1l);
+        singer.setFirstName("John Clayton");
         Album album = singer.getAlbums().stream().filter(
             a -> a.getTitle().equals("Battle Studies")).findFirst().get();
-        singer.setFirstName("John Clayton");
         singer.removeAlbum(album);
         singerDao.save(singer);
         

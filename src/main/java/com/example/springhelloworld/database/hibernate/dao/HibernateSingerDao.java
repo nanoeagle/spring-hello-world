@@ -12,25 +12,24 @@ public class HibernateSingerDao extends AbstractHibernateDao
 implements SingerDao {
     @Override
     @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
     public List<Singer> findAll() {
         return sessionFactory.getCurrentSession()
-            .createQuery("from Singer s").list();
+            .createQuery("from Singer s", Singer.class).list();
     }
 
     @Override
     @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
     public List<Singer> findAllWithAssociations() {
         return sessionFactory.getCurrentSession()
-            .getNamedQuery("Singer.findAllWithAssociation").list();
+            .createNamedQuery("Singer.findAllWithAssociation", Singer.class)
+            .list();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Singer findById(Long id) {
         return (Singer) sessionFactory.getCurrentSession()
-            .getNamedQuery("Singer.findById")
+            .createNamedQuery("Singer.findById", Singer.class)
             .setParameter("id", id).uniqueResult();
     }
 
