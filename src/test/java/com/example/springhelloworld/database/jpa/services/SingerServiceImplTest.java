@@ -67,7 +67,9 @@ public class SingerServiceImplTest {
 
     @Test
     public void testFindAllByNativeQuery() {
-
+        List<Singer> allSingers = singerService.findAllByNativeQuery();
+        for (Singer singer : allSingers) LOGGER.info(singer.toSimpleString());
+        assertEquals(3, allSingers.size());
     }
 
     @Test

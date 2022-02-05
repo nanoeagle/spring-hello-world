@@ -55,10 +55,9 @@ implements SingerService {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Singer> findAllByNativeQuery() {
-        String allSingerNativeQuery = 
-            "select id, first_name, last_name, birth_date, version from singer";
         return entityManager
-            .createNativeQuery(allSingerNativeQuery, Singer.class)
+            // .createNativeQuery("select * from singer", Singer.class)
+            .createNativeQuery("select * from singer", "singerResult")
             .getResultList();
     }
 

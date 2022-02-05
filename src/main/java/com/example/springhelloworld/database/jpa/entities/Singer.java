@@ -19,6 +19,8 @@ import org.hibernate.annotations.Cascade;
         query = "select distinct s from Singer s " +
             "left join fetch s.albums a " +
             "left join fetch s.instruments i where s.id = :id")})
+@SqlResultSetMapping(name = "singerResult", 
+    entities = @EntityResult(entityClass = Singer.class))
 public class Singer extends AbstractEntity {
     @Column(name = "first_name")
     private String firstName;
