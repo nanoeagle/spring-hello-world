@@ -73,6 +73,14 @@ public class SingerServiceImplTest {
     }
 
     @Test
+    public void testFindByFields() {
+        Map<String, ?> fields = Map.of("birthDate", generateDate(1977, 9, 16));
+        List<Singer> foundSingers = singerService.findByFields(fields);
+        for (Singer singer : foundSingers) LOGGER.info(singer.toString());
+        assertEquals(1, foundSingers.size());
+    }
+
+    @Test
     public void testFindById() {
         Singer singer = singerService.findById(1l);
         LOGGER.info(singer.toString());

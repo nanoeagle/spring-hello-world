@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-@Entity
+// @Entity
 @Table(name = "album")
 public class Album extends AbstractEntity implements Comparable<Album> {
     @Column(name = "title")

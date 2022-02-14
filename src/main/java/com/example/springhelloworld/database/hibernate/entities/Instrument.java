@@ -2,7 +2,7 @@ package com.example.springhelloworld.database.hibernate.entities;
 
 import javax.persistence.*;
 
-@Entity
+// @Entity
 @Table(name = "instrument")
 public class Instrument extends AbstractEntity {
     @Column(name = "instrument_name")

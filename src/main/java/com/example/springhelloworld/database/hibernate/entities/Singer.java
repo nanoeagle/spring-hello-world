@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Cascade;
 
-@Entity
+// @Entity
 @Table(name = "singer")
 @NamedQueries({
     @NamedQuery(name = "Singer.findAllWithAssociation",

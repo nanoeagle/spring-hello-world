@@ -1,6 +1,8 @@
 package com.example.springhelloworld.database.jpa.services;
 
-import java.util.List;
+import java.util.*;
+
+import javax.persistence.criteria.*;
 
 import com.example.springhelloworld.database.jpa.entities.Singer;
 import com.example.springhelloworld.database.jpa.pojos.SingerWithLatestAlbum;
@@ -59,6 +61,20 @@ implements SingerService {
             // .createNativeQuery("select * from singer", Singer.class)
             .createNativeQuery("select * from singer", "singerResult")
             .getResultList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Singer> findByFields(Map<String, ?> fields) {
+        CriteriaQuery<Singer> criteriaQuery = createCriteriaQueryFrom(fields);
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    private CriteriaQuery<Singer> createCriteriaQueryFrom(Map<String, ?> fields) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        SingerCriteriaQueryCreator queryCreator = 
+            new SingerCriteriaQueryCreator(criteriaBuilder, fields);
+        return queryCreator.getCriteriaQuery();
     }
 
     @Override
