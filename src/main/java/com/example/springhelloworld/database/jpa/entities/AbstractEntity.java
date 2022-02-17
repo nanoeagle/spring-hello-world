@@ -1,11 +1,9 @@
 package com.example.springhelloworld.database.jpa.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable {
+public abstract class AbstractEntity extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

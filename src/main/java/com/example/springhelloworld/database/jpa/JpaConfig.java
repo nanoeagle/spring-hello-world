@@ -14,12 +14,15 @@ import org.springframework.jdbc.datasource.embedded.*;
 import org.springframework.orm.jpa.*;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.*;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 // @ImportResource(locations = "appContextConfigs/app-context-database-jpa.xml")
 @ComponentScan(basePackages = "com.example.springhelloworld.database.jpa")
 @EnableTransactionManagement
+@EnableJpaRepositories
+@EnableJpaAuditing(auditorAwareRef = "auditorAwareBean")
 @Configuration
 public class JpaConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(JpaConfig.class);

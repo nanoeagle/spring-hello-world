@@ -7,8 +7,10 @@ import java.util.*;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "singer")
 @NamedQueries({
     @NamedQuery(name = "Singer.findAllWithAssociation",
@@ -31,7 +33,7 @@ public class Singer extends AbstractEntity {
     @Temporal(TemporalType.DATE)
     @Column(name = "birth_date")
     private Date birthDate;
-    
+
     @OneToMany(mappedBy = "singer", cascade = CascadeType.ALL, 
         orphanRemoval = true)
     private Set<Album> albums;
@@ -44,17 +46,21 @@ public class Singer extends AbstractEntity {
     private Set<Instrument> instruments;
     
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
     
     public Date getBirthDate() {
         return birthDate;
     }
-    
+
     public Set<Album> getAlbums() {
         return albums;
     }
@@ -95,7 +101,10 @@ public class Singer extends AbstractEntity {
 
     public String toSimpleString() {
         return "Singer - Id: " + id + ", First name: " + firstName
-            + ", Last name: " + lastName + ", Birthday: " + birthDate + "\n";
+            + ", Last name: " + lastName + ", Birthday: " + birthDate 
+            + ", Created by: " + createdBy + ", Created date: " + createdDate
+            + ", Modified by: " + lastModifiedBy + ", Modified date: " 
+            + lastModifiedDate + "\n";
     }
     
     @Override
