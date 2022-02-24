@@ -89,6 +89,20 @@ public class JpaConfig {
         props.put("hibernate.max_fetch_depth", 3);
         props.put("hibernate.jdbc.fetch_size", 50);
         props.put("hibernate.jdbc.batch_size", 10);
+        props.put("org.hibernate.envers.audit_table_suffix", "_H"); // H is history.
+        props.put("org.hibernate.envers.revision_field_name", "AUDIT_REVISION");
+        props.put("org.hibernate.envers.revision_type_field_name", "ACTION_TYPE");
+        props.put("org.hibernate.envers.audit_strategy",
+            "org.hibernate.envers.strategy.ValidityAuditStrategy");
+        props.put(
+            "org.hibernate.envers.audit_strategy_validity_end_rev_field_name",
+            "AUDIT_REVISION_END");
+        props.put(
+            "org.hibernate.envers.audit_strategy_validity_store_revend_timestamp",
+            "True");
+        props.put(
+            "org.hibernate.envers.audit_strategy_validity_revend_timestamp_field_name",
+            "AUDIT_REVISION_END_TS");
         return props;
     }
 }

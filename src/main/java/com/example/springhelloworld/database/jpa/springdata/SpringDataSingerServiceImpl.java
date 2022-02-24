@@ -2,8 +2,11 @@ package com.example.springhelloworld.database.jpa.springdata;
 
 import java.util.*;
 
+import javax.persistence.*;
+
 import com.example.springhelloworld.database.jpa.entities.Singer;
 
+import org.hibernate.envers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +17,9 @@ public class SpringDataSingerServiceImpl implements SpringDataSingerService {
     @Autowired
     private SpringDataSingerRepository singerRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     @Transactional(readOnly = true)
     public List<Singer> findAll() {
@@ -23,8 +29,14 @@ public class SpringDataSingerServiceImpl implements SpringDataSingerService {
     }
 
     @Override
-    public Optional<Singer> findById(Long id) {
-        return singerRepository.findById(id);
+    public Singer findById(Long id) throws NoSuchElementException {
+        return singerRepository.findById(id).get();
+    }
+
+    @Override
+    public Singer findSingerByAuditRevisionNumber(Long id, int auditNum) {
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+        return auditReader.find(Singer.class, id, auditNum);
     }
 
     @Override

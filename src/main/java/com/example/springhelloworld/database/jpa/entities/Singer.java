@@ -7,10 +7,13 @@ import java.util.*;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Audited
 @Table(name = "singer")
 @NamedQueries({
     @NamedQuery(name = "Singer.findAllWithAssociation",
@@ -34,10 +37,12 @@ public class Singer extends AbstractEntity {
     @Column(name = "birth_date")
     private Date birthDate;
 
+    @NotAudited
     @OneToMany(mappedBy = "singer", cascade = CascadeType.ALL, 
         orphanRemoval = true)
     private Set<Album> albums;
     
+    @NotAudited
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Cascade(SAVE_UPDATE)
     @JoinTable(name = "singer_instrument",

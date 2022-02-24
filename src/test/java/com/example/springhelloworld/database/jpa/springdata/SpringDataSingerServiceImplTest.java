@@ -39,9 +39,19 @@ public class SpringDataSingerServiceImplTest {
 
     @Test
     public void testFindById() {
-        Singer singer = singerService.findById(1l).get();
+        Singer singer = singerService.findById(1l);
         LOGGER.info(singer.toSimpleString());
         assertEquals("John", singer.getFirstName());
+    }
+
+    @Test
+    public void testFindSingerByAuditRevisionNumber() {
+        singerService.save(
+            createSingerWithBasicInfo("Tony", "Morning", generateDate(1940, 8, 16)));
+
+        Singer insertedSinger = singerService.findSingerByAuditRevisionNumber(4l, 1);
+        LOGGER.info(insertedSinger.toSimpleString());
+        assertEquals("Tony", insertedSinger.getFirstName());
     }
 
     @Test
@@ -82,10 +92,10 @@ public class SpringDataSingerServiceImplTest {
 
     @Test
     public void testUpdate() {
-        Singer singer = singerService.findById(1l).get();
+        Singer singer = singerService.findById(1l);
         singer.setFirstName("John Clayton");
         singerService.save(singer);
         LOGGER.info(singer.toSimpleString());
-        assertEquals("John Clayton", singerService.findById(1l).get().getFirstName());
+        assertEquals("John Clayton", singerService.findById(1l).getFirstName());
     }
 }
