@@ -7,6 +7,7 @@
   xmlns:p="http://www.springframework.org/schema/p"
   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
   xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:aop="http://www.springframework.org/schema/aop"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/tx
@@ -18,14 +19,29 @@
     http://www.springframework.org/schema/jdbc
     http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
     http://www.springframework.org/schema/util
-    http://www.springframework.org/schema/util/spring-util.xsd">
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
  
-  <tx:annotation-driven/>
   <context:component-scan base-package="com.example.springhelloworld.database.transaction"/>
   <jpa:repositories base-package="com.example.springhelloworld.database.transaction"
     transaction-manager-ref="transactionManager"
     entity-manager-factory-ref="entityManagerFactory"/>
-    
+  
+  <aop:config>
+    <aop:pointcut id="serviceOperation" expression=
+      "execution(* com.example.springhelloworld.database.transaction.dao.*ServiceImpl.*(..))"/>
+    <aop:advisor pointcut-ref="serviceOperation" advice-ref="txAdvice"/>
+  </aop:config>
+
+  <tx:advice id="txAdvice">
+    <tx:attributes>
+      <tx:method name="find*" read-only="true"/>
+      <tx:method name="count*" propagation="NEVER"/>
+      <tx:method name="*"/>
+    </tx:attributes>
+  </tx:advice>
+
   <bean id="transactionManager"
     class="org.springframework.orm.jpa.JpaTransactionManager"
     p:entityManagerFactory-ref="entityManagerFactory"/>
