@@ -21,7 +21,7 @@ public class SingerServiceImplTest {
     
     @Before
     public void init() {
-        context = new AnnotationConfigApplicationContext(ServiceConfig.class);
+        context = new AnnotationConfigApplicationContext(DBConfig.class, ServiceConfig.class);
         singerService = context.getBean("transactionalSingerService", SingerService.class);
     }
     

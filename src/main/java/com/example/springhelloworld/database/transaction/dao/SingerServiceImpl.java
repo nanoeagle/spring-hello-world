@@ -2,28 +2,33 @@ package com.example.springhelloworld.database.transaction.dao;
 
 import java.util.*;
 
+import javax.persistence.*;
+
 import com.example.springhelloworld.database.transaction.entities.Singer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Service("transactionalSingerService")
-// @Transactional
 public class SingerServiceImpl implements SingerService {
     @Autowired
-    private SingerRepository repository;
+    private TransactionTemplate transactionTemplate;
+    
+    @PersistenceContext
+    private EntityManager entityManager;
     
     @Override
-    // @Transactional(readOnly = true)
     public List<Singer> findAll() {
-        List<Singer> singers = new ArrayList<>();
-        for (Singer singer : repository.findAll()) singers.add(singer);
-        return singers;
+        return transactionTemplate.execute(transactionStatus -> 
+            entityManager.createNamedQuery(Singer.FIND_ALL, Singer.class)
+                .getResultList());
     }
 
     @Override
-    // @Transactional(propagation = Propagation.NEVER)
     public long countAll() {
-        return repository.countAll();
+        return transactionTemplate.execute(transactionStatus -> 
+            entityManager.createNamedQuery(Singer.COUNT_ALL, Long.class)
+                .getSingleResult());
     }
 }
