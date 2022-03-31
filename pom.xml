@@ -58,5 +58,10 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions-jdbc</artifactId>
+      <version>5.0.9</version>
+    </dependency>
   </dependencies>
 </project>

@@ -72,7 +72,7 @@ public class HibernateConfig {
 //     private Properties hibernateProperties() {
 //         Properties props = new Properties();
 //         props.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-//         // props.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+//         // props.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
 //         props.put("hibernate.format_sql", true);
 //         props.put("hibernate.use_sql_comments", true);
 //         props.put("hibernate.show_sql", true);

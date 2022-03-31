@@ -6,11 +6,12 @@ import javax.persistence.*;
 
 import com.example.springhelloworld.database.transaction.entities.Singer;
 
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+// import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
-@Service("transactionalSingerService")
+// @Service("transactionalSingerService")
 public class SingerServiceImpl implements SingerService {
     @Autowired
     private TransactionTemplate transactionTemplate;
@@ -30,5 +31,10 @@ public class SingerServiceImpl implements SingerService {
         return transactionTemplate.execute(transactionStatus -> 
             entityManager.createNamedQuery(Singer.COUNT_ALL, Long.class)
                 .getSingleResult());
+    }
+
+    @Override
+    public Singer save(Singer singer) {
+        throw new NotYetImplementedException();
     }
 }
