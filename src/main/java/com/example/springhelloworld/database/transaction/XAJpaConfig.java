@@ -26,6 +26,12 @@ public class XAJpaConfig {
         return entityManagerFactory(dataSourceB(), "emfB");
     }
 
+    // For TransactionSpringBootTest.
+    @Bean
+    public EntityManagerFactory entityManagerFactory() {
+        return entityManagerFactory(dataSourceA(), "entityManagerFactory");
+    }
+
     private EntityManagerFactory entityManagerFactory(DataSource ds, String name) {
         LocalContainerEntityManagerFactoryBean factoryBean =
             new LocalContainerEntityManagerFactoryBean();

@@ -16,9 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication(scanBasePackages = "com.example.springhelloworld.database.jpa")
-public class SpringBootDataJPADemoTest {
+public class DataJPASpringBootTest {
     private static final Logger LOGGER = 
-        LoggerFactory.getLogger(SpringBootDataJPADemoTest.class);
+        LoggerFactory.getLogger(DataJPASpringBootTest.class);
 
     private ConfigurableApplicationContext context;
     
@@ -27,7 +27,7 @@ public class SpringBootDataJPADemoTest {
 
     @Before
     public void init() {
-        context = SpringApplication.run(SpringBootDataJPADemoTest.class);
+        context = SpringApplication.run(DataJPASpringBootTest.class);
     }
 
     @After
